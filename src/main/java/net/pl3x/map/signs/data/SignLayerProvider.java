@@ -68,13 +68,14 @@ public class SignLayerProvider implements LayerProvider {
 
     public void add(Position position, Key key, String[] lines) {
         Icon icon = Marker.icon(position.point(), key, worldConfig.ICON_SIZE);
-        icon.markerOptions(MarkerOptions.builder()
-                .hoverTooltip(worldConfig.TOOLTIP
+        if (lines[0] != "" || lines[1] != "" || lines[2] != "" || lines[3] != "") {
+            icon.markerOptions(MarkerOptions.builder()
+                    .hoverTooltip(worldConfig.TOOLTIP
                         .replace("{line1}", lines[0])
                         .replace("{line2}", lines[1])
                         .replace("{line3}", lines[2])
                         .replace("{line4}", lines[3])));
-        System.out.println("2");
+        }
         this.data.put(position, new Data(icon, key, lines));
     }
 
